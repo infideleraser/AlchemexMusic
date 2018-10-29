@@ -235,25 +235,20 @@ class Music:
     @commands.command(name='play', aliases=['sing'], brief = 'plays song from youtube or a link')
     async def play_(self, ctx, *, search: str):
         """Request a song and add it to the queue"""
-        if ctx.guild.voice_client and ctx.guild.voice_client.channel:
-            await ctx.trigger_typing()
+        await ctx.trigger_typing()
 
-            vc = ctx.voice_client
+        vc = ctx.voice_client
 
-            if not vc:
-                await ctx.invoke(self.connect_)
+        if not vc:
+            await ctx.invoke(self.connect_)
 
-            player = self.get_player(ctx)
+        player = self.get_player(ctx)
 
-            source = await YTDLSource.create_source(ctx, search, loop=self.bot.loop, download=False)
+        source = await YTDLSource.create_source(ctx, search, loop=self.bot.loop, download=False)
 
-            await player.queue.put(source)
-            await ctx.message.add_reaction('✅')
-        else:
-            try:
-                await ctx.send('join a channel')
-            except AttributeError:
-                await ctx.send('join a channel')
+        await player.queue.put(source)
+        await ctx.message.add_reaction('✅')
+        
 
     @commands.command(name='pause', brief = 'pauses current song')
     async def pause_(self, ctx):
