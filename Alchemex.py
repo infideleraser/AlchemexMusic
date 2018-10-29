@@ -12,7 +12,7 @@ import music
 
 def get_prefix(bot, message):
     """A callable Prefix for my bot."""
-    prefix = ['a!']
+    prefix = ['music ']
     return commands.when_mentioned_or(*prefix)(bot, message)
 bot = commands.Bot(command_prefix=get_prefix, description="Alchemex Music Bot")
 
