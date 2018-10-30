@@ -21,7 +21,7 @@ for ext in extensions:
     bot.load_extension(ext)
 
 logging.basicConfig(level='INFO')
-logger = logging.getLogger('Alchemex.py')
+logger = logging.getLogger('AlchemexMusic.py')
 
 
 
