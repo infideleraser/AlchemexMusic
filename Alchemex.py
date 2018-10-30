@@ -15,7 +15,6 @@ def get_prefix(bot, message):
     prefix = ['music ']
     return commands.when_mentioned_or(*prefix)(bot, message)
 bot = commands.Bot(command_prefix=get_prefix, description="Alchemex Music Bot")
-
 extensions = ['music']
 
 for ext in extensions:
